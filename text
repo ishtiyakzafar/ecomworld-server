@@ -1,0 +1,6 @@
+PORT=2000
+MONGO_URI=mongodb://localhost:27017/ecomworld
+JWT_SECRET=dj&84w&gr45w@jfs79jfjs
+CLOUD_NAME=dzxbddqoj
+CLOUD_KEY=526165658192339
+CLOUD_KEY_SECRET=w38IkHq1bKK8f-zwL0FbHg9QAaI
