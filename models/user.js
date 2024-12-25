@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const address = require('./address');
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
+    role: { type: String, enum: ['CUSTOMER', 'ADMIN'], default: 'CUSTOMER' },
+    addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    paymentInformation: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentInformation' }],
+    ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Rating' }],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     createdAt: { type: Date, default: Date.now }
 });
 

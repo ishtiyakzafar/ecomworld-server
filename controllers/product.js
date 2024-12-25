@@ -569,21 +569,10 @@ const data = [
 
 // Create a new product
 exports.createProduct = async (req, res) => {
-    // const { error } = validateProduct(req.body);
-    // if (error) return res.status(400).json({ message: error.details[0].message });
-
-    // console.log(req.body.image)
     try {
-        const result = await cloudinary.uploader.upload(req.body.image, {
-            folder: 'your-folder-name',
-        });
-
-
-
-
-        // const newProduct = new Product(req.body);
-        // const product = await newProduct.save();
-        res.status(201).json(result);
+        const newProduct = new Product(req.body);
+        const product = await newProduct.save();
+        res.status(201).json(product);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -631,7 +620,17 @@ exports.getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ message: 'Product not found' });
-        res.json(product);
+        res.status(200).json(product);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// Get a products by productType
+exports.getProductsByType = async (req, res) => {
+    try {
+        const products = await Product.find({ productType: { $in: ['onsale', 'newarrival', 'bestseller'] } });
+        res.status(200).json(products);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

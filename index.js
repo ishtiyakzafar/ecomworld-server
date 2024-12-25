@@ -3,7 +3,7 @@ const connectDB = require('./config/database');
 const dotenv = require('dotenv');
 const cors = require("cors");
 
-dotenv.config();   
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -15,14 +15,14 @@ app.use(express.json());
 connectDB();
 
 // Import routes
-const productRoutes = require('./routes/product');
-const supplierRoutes = require('./routes/supplier');
+const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const productRoutes = require('./routes/product');
 
 // Use routes
-app.use('/api/products', productRoutes);
-app.use('/api/suppliers', supplierRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
 
 
 app.get('/', (req, res) => {
