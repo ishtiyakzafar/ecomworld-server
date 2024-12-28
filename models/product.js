@@ -9,16 +9,13 @@ const ProductSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   discountedPrice: { type: Number, required: true },
   discountPercent: { type: Number, required: true },
-  size: [
-    {
-      name: { type: String },
-      quantity: { type: String },
-    },
-  ],
+  size: [{ name: { type: String }, quantity: { type: String } }],
   imageUrl: [{ type: String }],
   ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Rating" }],
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
-  category: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  topLevelCategory: { type: String, required: true },
+  secondLevelCategory: { type: String, required: true },
+  thirdLevelCategory: { type: String, required: true },
   numRatings: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now },
 });
