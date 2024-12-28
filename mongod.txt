@@ -1,0 +1,5 @@
+user name - zaferistak
+pass - T7zwlm2fItS68foT
+
+mongodb+srv://zaferistak:T7zwlm2fItS68foT@cluster0.e6wtp.mongodb.net/ecommerce?retryWrites=true&w=majority
+mongodb+srv://<username>:<password>@<cluster-address>/oneshop?retryWrites=true&w=majority
