@@ -8,3 +8,5 @@ mongodb+srv://<username>:<password>@<cluster-address>/oneshop?retryWrites=true&w
 
 
 mongodb+srv://ishtiyaquejaffer:nUD4SRWWGhkQCECg@cluster0.hzkgr.mongodb.net/ecommerce?retryWrites=true&w=majority
+
+C:\Program Files\MongoDB\Server\8.0\data\

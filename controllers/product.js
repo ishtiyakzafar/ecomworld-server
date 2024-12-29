@@ -6,8 +6,8 @@ exports.createProduct = async (req, res) => {
     const newProduct = new Product(req.body);
     const product = await newProduct.save();
     res.status(201).json(product);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
 
@@ -44,8 +44,8 @@ exports.getAllProducts = async (req, res) => {
         pageSize: limit,
       },
     });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
 
@@ -63,8 +63,8 @@ exports.getProductsByType = async (req, res) => {
   try {
     const products = await Product.find({ productType: { $in: ["onsale", "newarrival", "bestseller"] } });
     res.status(200).json(products);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
 
@@ -73,8 +73,8 @@ exports.updateProduct = async (req, res) => {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.status(200).json(product);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
 
@@ -83,7 +83,7 @@ exports.deleteProduct = async (req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.status(200).json({ message: "Product deleted" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
