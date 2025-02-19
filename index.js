@@ -30,23 +30,27 @@ connectDB().catch((err) => {
     process.exit(1);
 });
 
-// Import & Use Routes
-const routes = [
-    // { path: '/api/auth', module: './routes/auth' },
-    // { path: '/api/users', module: './routes/user' },
-    { path: '/api/products', module: './routes/product' },
-    { path: '/api/cart', module: './routes/cart' },
-    { path: '/api/address', module: './routes/address' },
-    { path: '/api/orders', module: './routes/order' },
-    { path: '/api/wishlist', module: './routes/wishlist' },
-    { path: '/api/categories', module: './routes/categories' },
-];
-
-routes.forEach(route => app.use(route.path, require(route.module)));
+// const authRoutes = require("./routes/auth");
+// const userRoutes = require("./routes/user");
+const productRoutes = require("./routes/product");
+const cartRoutes = require("./routes/cart");
+const addressRoutes = require("./routes/address");
+const orderRoutes = require("./routes/order");
+const wishlistRoutes = require("./routes/wishlist");
+const categoriesRoutes = require("./routes/categories");
 
 app.get('/', (req, res) => {
     res.json({ message: 'ecomworld server is up and running!', status: 'success' });
 });
+
+// app.use("/api/auth", authRoutes);
+// app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/address", addressRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/wishlist", wishlistRoutes);
+app.use("/api/categories", categoriesRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
