@@ -30,11 +30,12 @@ connectDB().catch((err) => {
     process.exit(1);
 });
 
-// Import & Use Routes
+const productRoutes = require("./routes/product");
+
 const routes = [
     // { path: '/api/auth', module: './routes/auth' },
     // { path: '/api/users', module: './routes/user' },
-    { path: '/api/products', module: './routes/product' },
+    // { path: '/api/products', module: './routes/product' },
     // { path: '/api/cart', module: './routes/cart' },
     // { path: '/api/address', module: './routes/address' },
     // { path: '/api/orders', module: './routes/order' },
@@ -42,11 +43,13 @@ const routes = [
     // { path: '/api/categories', module: './routes/categories' },
 ];
 
-routes.forEach(route => app.use(route.path, require(route.module)));
+// routes.forEach(route => app.use(route.path, require(route.module)));
 
 app.get('/', (req, res) => {
     res.json({ message: 'ecomworld server is up and running!', status: 'success' });
 });
+
+app.use("/api/products", productRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
