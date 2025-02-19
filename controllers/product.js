@@ -16,8 +16,8 @@ const data = [
       { "name": "L", "quantity": 12 }
     ],
     "imageUrl": ["https://example.com/nike-tshirt.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Men",
+    "topLevelCategory": "Men",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "T-Shirts",
     "numRatings": 120,
     "tags": ["BEST_SELLER"]
@@ -36,8 +36,8 @@ const data = [
       { "name": "L", "quantity": 8 }
     ],
     "imageUrl": ["https://example.com/adidas-leggings.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Women",
+    "topLevelCategory": "women",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Leggings",
     "numRatings": 95,
     "tags": ["NEW_ARRIVAL"]
@@ -56,8 +56,8 @@ const data = [
       { "name": "L", "quantity": 14 }
     ],
     "imageUrl": ["https://example.com/puma-shorts.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Men",
+    "topLevelCategory": "men",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Shorts",
     "numRatings": 110,
     "tags": ["ON_SALE"]
@@ -76,8 +76,8 @@ const data = [
       { "name": "L", "quantity": 10 }
     ],
     "imageUrl": ["https://example.com/hm-hoodie.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Women",
+    "topLevelCategory": "women",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Hoodies",
     "numRatings": 85,
     "tags": ["BEST_SELLER"]
@@ -96,8 +96,8 @@ const data = [
       { "name": "L", "quantity": 5 }
     ],
     "imageUrl": ["https://example.com/levis-jacket.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Men",
+    "topLevelCategory": "men",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Jackets",
     "numRatings": 150,
     "tags": ["NEW_ARRIVAL"]
@@ -116,8 +116,8 @@ const data = [
       { "name": "L", "quantity": 10 }
     ],
     "imageUrl": ["https://example.com/zara-dress.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Women",
+    "topLevelCategory": "women",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Dresses",
     "numRatings": 95,
     "tags": ["ON_SALE"]
@@ -136,8 +136,8 @@ const data = [
       { "name": "L", "quantity": 8 }
     ],
     "imageUrl": ["https://example.com/reebok-shirt.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Men",
+    "topLevelCategory": "men",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Sportswear",
     "numRatings": 130,
     "tags": ["BEST_SELLER"]
@@ -156,8 +156,8 @@ const data = [
       { "name": "L", "quantity": 10 }
     ],
     "imageUrl": ["https://example.com/forever21-crop-top.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Women",
+    "topLevelCategory": "women",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Tops",
     "numRatings": 70,
     "tags": ["NEW_ARRIVAL"]
@@ -176,8 +176,8 @@ const data = [
       { "name": "L", "quantity": 8 }
     ],
     "imageUrl": ["https://example.com/ua-joggers.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Men",
+    "topLevelCategory": "men",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Joggers",
     "numRatings": 105,
     "tags": ["BEST_SELLER"]
@@ -196,8 +196,8 @@ const data = [
       { "name": "L", "quantity": 15 }
     ],
     "imageUrl": ["https://example.com/hollister-sweatshirt.jpg"],
-    "topLevelCategory": "Clothing",
-    "secondLevelCategory": "Women",
+    "topLevelCategory": "women",
+    "secondLevelCategory": "Clothing",
     "thirdLevelCategory": "Sweatshirts",
     "numRatings": 125,
     "tags": ["ON_SALE"]
