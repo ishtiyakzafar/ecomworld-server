@@ -30,7 +30,7 @@ connectDB().catch((err) => {
     process.exit(1);
 });
 
-// const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
     res.json({ message: 'ecomworld server is up and running!', status: 'success' });
 });
 
-// app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
