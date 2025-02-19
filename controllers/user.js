@@ -1,12 +1,12 @@
-const User = require('../models/User');
+// const User = require('../models/User');
 // const validateUser = require('../validators/user');
 // const bcrypt = require("bcryptjs");
 
 // Get all users
 exports.getAllUsers = async (req, res) => {
     try {
-        const users = await User.find({ role: "CUSTOMER" }).select("name email addresses ratings reviews createdAt");;
-        res.json(users);
+        // const users = await User.find({ role: "CUSTOMER" }).select("name email addresses ratings reviews createdAt");;
+        res.json("");
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
