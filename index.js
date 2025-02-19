@@ -31,7 +31,7 @@ connectDB().catch((err) => {
 });
 
 // const authRoutes = require("./routes/auth");
-// const userRoutes = require("./routes/user");
+const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
 const addressRoutes = require("./routes/address");
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 });
 
 // app.use("/api/auth", authRoutes);
-// app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/address", addressRoutes);
