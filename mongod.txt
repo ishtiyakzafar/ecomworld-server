@@ -1,0 +1,12 @@
+user name - zaferistak    ishtiyaquejaffer
+pass - T7zwlm2fItS68foT   nUD4SRWWGhkQCECg
+
+
+
+mongodb+srv://zaferistak:T7zwlm2fItS68foT@cluster0.e6wtp.mongodb.net/ecommerce?retryWrites=true&w=majority
+mongodb+srv://<username>:<password>@<cluster-address>/oneshop?retryWrites=true&w=majority
+
+
+mongodb+srv://ishtiyaquejaffer:nUD4SRWWGhkQCECg@cluster0.hzkgr.mongodb.net/ecommerce?retryWrites=true&w=majority
+
+C:\Program Files\MongoDB\Server\8.0\data\
