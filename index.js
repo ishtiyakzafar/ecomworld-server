@@ -10,6 +10,18 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 
+// Security Headers
+app.use((req, res, next) => {
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    next();
+});
+
 app.use(express.json());
 
 // Connect to the database
@@ -18,28 +30,23 @@ connectDB().catch((err) => {
     process.exit(1);
 });
 
-// const authRoutes = require("./routes/auth");
-// const userRoutes = require("./routes/user");
-const productRoutes = require("./routes/product");
-// const cartRoutes = require("./routes/cart");
-// const addressRoutes = require("./routes/address");
-// const orderRoutes = require("./routes/order");
-// const wishlistRoutes = require("./routes/wishlist");
-// const categoriesRoutes = require("./routes/categories");
+// Import & Use Routes
+const routes = [
+    // { path: '/api/auth', module: './routes/auth' },
+    // { path: '/api/users', module: './routes/user' },
+    { path: '/api/products', module: './routes/product' },
+    // { path: '/api/cart', module: './routes/cart' },
+    // { path: '/api/address', module: './routes/address' },
+    // { path: '/api/orders', module: './routes/order' },
+    // { path: '/api/wishlist', module: './routes/wishlist' },
+    // { path: '/api/categories', module: './routes/categories' },
+];
 
-app.get("/", (req, res) => {
-    res.send("HomeBudget Server is up and running");
+routes.forEach(route => app.use(route.path, require(route.module)));
+
+app.get('/', (req, res) => {
+    res.json({ message: 'ecomworld server is up and running!', status: 'success' });
 });
-
-// app.use("/api/auth", authRoutes);
-// app.use("/api/users", userRoutes);
-app.use("/api/products", productRoutes);
-// app.use("/api/cart", cartRoutes);
-// app.use("/api/address", addressRoutes);
-// app.use("/api/orders", orderRoutes);
-// app.use("/api/wishlist", wishlistRoutes);
-// app.use("/api/categories", categoriesRoutes);
-
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
