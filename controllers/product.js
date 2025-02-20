@@ -218,33 +218,6 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-exports.getNewArrivalProduct = async (req, res) => {
-  try {
-    const product = await Product.find({ isNewArrival: true });
-    res.status(200).json(product);
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong " + error });
-  }
-};
-
-exports.getOnSaleProduct = async (req, res) => {
-  try {
-    const product = await Product.find({ isOnSale: true });
-    res.status(200).json(product);
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong " + error });
-  }
-};
-
-exports.getBestSellerProduct = async (req, res) => {
-  try {
-    const product = await Product.find({ isBestSeller: true });
-    res.status(200).json(product);
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong " + error });
-  }
-};
-
 exports.getAllProducts = async (req, res) => {
   try {
     const searchTerm = req.query.search || "";
@@ -283,9 +256,11 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
-exports.getProductsByCategory = async (req, res) => {
+exports.getProducts = async (req, res) => {
   try {
-    const { slug1, slug2, slug3 } = req.params;
+    const { level = "", category } = req.query;
+
+    const [topLevel, secondLevel, thirdLevel] = level.split(",");
 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -293,13 +268,20 @@ exports.getProductsByCategory = async (req, res) => {
 
     const query = {};
 
-    if (slug1) query.topLevelCategory = { $regex: `^${slug1}$`, $options: "i" };
-    if (slug2) query.secondLevelCategory = { $regex: `^${slug2}$`, $options: "i" };
-    if (slug3) query.thirdLevelCategory = { $regex: `^${slug3}$`, $options: "i" };
+    if (topLevel) query.topLevelCategory = { $regex: `^${topLevel}$`, $options: "i" };
+    if (secondLevel) query.secondLevelCategory = { $regex: `^${secondLevel}$`, $options: "i" };
+    if (thirdLevel) query.thirdLevelCategory = { $regex: `^${thirdLevel}$`, $options: "i" };
 
-    const products = await Product.find(query)
-      .skip(skip)
-      .limit(limit);
+
+    if (category && topLevel && !secondLevel && !thirdLevel) {
+      query.secondLevelCategory = { $in: category.split(',') };
+    }
+
+    if (category && topLevel && secondLevel && !thirdLevel) {
+      query.thirdLevelCategory = { $in: category.split(',') };
+    }
+
+    const products = await Product.find(query).skip(skip).limit(limit);
 
     const totalProduct = await Product.countDocuments(query);
 
