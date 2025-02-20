@@ -64,7 +64,7 @@ exports.createUser = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong", error: error.message });
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
 
@@ -97,7 +97,7 @@ exports.loginUser = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong", error: error.message });
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
 
@@ -109,6 +109,6 @@ exports.getAccessToken = async (req, res) => {
 
     res.status(200).json({ token: accessToken });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong", error: error.message });
+    res.status(500).json({ message: "Something went wrong " + error });
   }
 };
