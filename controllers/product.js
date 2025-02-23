@@ -256,7 +256,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const { level = "", category, color, price, size, brand } = req.query;
+    const { level = "", category, color, price, size, brand, discount } = req.query;
 
     const [topLevel, secondLevel, thirdLevel] = level.split(",");
 
@@ -302,6 +302,11 @@ exports.getProducts = async (req, res) => {
 
       query.size = { $elemMatch: { name: { $in: convertedSizes }, quantity: { $gt: 0 } } };
     }
+
+    if (discount) {
+      query.discountPercent = { $gte: discount };
+    }
+
 
     const products = await Product.find(query).skip(skip).limit(limit);
     const totalProduct = await Product.countDocuments(query);
