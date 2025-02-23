@@ -258,7 +258,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const { level = "", category } = req.query;
+    const { level = "", category, color, price, size } = req.query;
 
     const [topLevel, secondLevel, thirdLevel] = level.split(",");
 
@@ -268,9 +268,13 @@ exports.getProducts = async (req, res) => {
 
     const query = {};
 
-    if (topLevel) query.topLevelCategory = { $regex: `^${topLevel}$`, $options: "i" };
-    if (secondLevel) query.secondLevelCategory = { $regex: `^${secondLevel}$`, $options: "i" };
-    if (thirdLevel) query.thirdLevelCategory = { $regex: `^${thirdLevel}$`, $options: "i" };
+    // if (topLevel) query.topLevelCategory = { $regex: `^${topLevel}$`, $options: "i" };
+    // if (secondLevel) query.secondLevelCategory = { $regex: `^${secondLevel}$`, $options: "i" };
+    // if (thirdLevel) query.thirdLevelCategory = { $regex: `^${thirdLevel}$`, $options: "i" };
+
+    if (topLevel) query.topLevelCategory = topLevel;
+    if (secondLevel) query.secondLevelCategory = secondLevel;
+    if (thirdLevel) query.thirdLevelCategory = thirdLevel;
 
 
     if (category && topLevel && !secondLevel && !thirdLevel) {
@@ -281,11 +285,30 @@ exports.getProducts = async (req, res) => {
       query.thirdLevelCategory = { $in: category.split(',') };
     }
 
-    const products = await Product.find(query).skip(skip).limit(limit);
+    if (color) {
+      query.color = { $in: color.split(',') };
+    }
 
+    if (price) {
+      const priceRanges = price.split(',').map(range => {
+        const [min, max] = range.split('-').map(Number);
+        return { discountedPrice: { $gte: min, $lte: max } };
+      });
+
+      query.$or = priceRanges;
+    }
+
+    if (size) {
+      const sizeMapping = { small: "S", medium: "M", large: "L" };
+      const convertedSizes = size.split(',').map(size => sizeMapping[size]).filter(Boolean);
+
+      query.size = { $elemMatch: { name: { $in: convertedSizes }, quantity: { $gt: 0 } } };
+    }
+
+    const products = await Product.find(query).skip(skip).limit(limit);
     const totalProduct = await Product.countDocuments(query);
 
-    res.json({
+    res.status(200).json({
       products,
       pagination: {
         totalProduct,
