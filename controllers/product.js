@@ -204,8 +204,6 @@ const data = [
   }
 ]
 
-
-
 exports.createProduct = async (req, res) => {
   try {
     const product = await Product.insertMany(data);
@@ -258,7 +256,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const { level = "", category, color, price, size } = req.query;
+    const { level = "", category, color, price, size, brand } = req.query;
 
     const [topLevel, secondLevel, thirdLevel] = level.split(",");
 
@@ -267,10 +265,6 @@ exports.getProducts = async (req, res) => {
     const skip = (page - 1) * limit;
 
     const query = {};
-
-    // if (topLevel) query.topLevelCategory = { $regex: `^${topLevel}$`, $options: "i" };
-    // if (secondLevel) query.secondLevelCategory = { $regex: `^${secondLevel}$`, $options: "i" };
-    // if (thirdLevel) query.thirdLevelCategory = { $regex: `^${thirdLevel}$`, $options: "i" };
 
     if (topLevel) query.topLevelCategory = topLevel;
     if (secondLevel) query.secondLevelCategory = secondLevel;
@@ -283,6 +277,10 @@ exports.getProducts = async (req, res) => {
 
     if (category && topLevel && secondLevel && !thirdLevel) {
       query.thirdLevelCategory = { $in: category.split(',') };
+    }
+
+    if (brand) {
+      query.brand = { $in: brand.split(',') };
     }
 
     if (color) {
@@ -356,6 +354,33 @@ exports.getProductsWithTags = async (req, res) => {
   try {
     const products = await Product.find({ tags: { $exists: true, $not: { $size: 0 } } });
     res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
+  }
+};
+
+exports.getBrands = async (req, res) => {
+  try {
+    const brands = await Product.aggregate([
+      { $group: { _id: "$brand", brandId: { $first: "$_id" } } },
+      { $project: { id: "$brandId", brand: "$_id", _id: 0 } },
+      { $sort: { brand: 1 } }
+    ]);
+    res.status(200).json(brands);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
+  }
+};
+
+exports.getColors = async (req, res) => {
+  try {
+    const colors = await Product.aggregate([
+      { $group: { _id: "$color", colorId: { $first: "$_id" } } },
+      { $project: { id: "$colorId", color: "$_id", _id: 0 } },
+      { $sort: { color: 1 } }
+    ]);
+
+    res.status(200).json(colors);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong " + error });
   }
