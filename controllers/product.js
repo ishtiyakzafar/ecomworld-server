@@ -313,9 +313,11 @@ exports.getProducts = async (req, res) => {
       query.$or = [
         { brand: { $regex: searchTerm } },
         { color: { $regex: searchTerm } },
+        { topLevelCategory: { $regex: searchTerm } },
+        { secondLevelCategory: { $regex: searchTerm } },
         { thirdLevelCategory: { $regex: searchTerm } },
         { title: { $regex: searchTerm } },
-        { description: { $regex: searchTerm } }
+        { description: { $regex: searchTerm } },
       ];
     }
 
