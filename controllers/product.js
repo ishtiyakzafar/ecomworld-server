@@ -4,205 +4,206 @@ const { men_jeans } = require("../productData/Men/men_jeans");
 const data = [
   {
     "brand": "Nike",
-    "title": "Men's Sports T-Shirt",
-    "description": "Breathable and moisture-wicking sports t-shirt.",
-    "color": "Black",
-    "price": 40,
-    "discountedPrice": 30,
-    "discountPercent": 25,
+    "title": "Men's Cotton T-Shirt",
+    "description": "Soft and breathable cotton t-shirt.",
+    "color": "blue",
+    "price": 4000,
+    "discountedPrice": 2000,
+    "discountPercent": 50,
     "size": [
       { "name": "S", "quantity": 10 },
       { "name": "M", "quantity": 15 },
       { "name": "L", "quantity": 12 }
     ],
-    "imageUrl": ["https://example.com/nike-tshirt.jpg"],
+    "imageUrl": ["https://example.com/nike-tshirt-blue.jpg"],
     "topLevelCategory": "men",
     "secondLevelCategory": "clothing",
     "thirdLevelCategory": "t-shirts",
-    "numRatings": 120,
-    "tags": ["BEST_SELLER"]
-  },
-  {
-    "brand": "Adidas",
-    "title": "Women's Yoga Leggings",
-    "description": "Stretchable and comfortable leggings for yoga and workouts.",
-    "color": "Grey",
-    "price": 60,
-    "discountedPrice": 50,
-    "discountPercent": 16,
-    "size": [
-      { "name": "S", "quantity": 12 },
-      { "name": "M", "quantity": 10 },
-      { "name": "L", "quantity": 8 }
-    ],
-    "imageUrl": ["https://example.com/adidas-leggings.jpg"],
-    "topLevelCategory": "women",
-    "secondLevelCategory": "clothing",
-    "thirdLevelCategory": "leggings",
-    "numRatings": 95,
+    "numRatings": 110,
     "tags": ["NEW_ARRIVAL"]
   },
   {
-    "brand": "Puma",
-    "title": "Men's Training Shorts",
-    "description": "Lightweight training shorts for gym and sports activities.",
-    "color": "Navy Blue",
-    "price": 35,
-    "discountedPrice": 28,
-    "discountPercent": 20,
-    "size": [
-      { "name": "S", "quantity": 15 },
-      { "name": "M", "quantity": 18 },
-      { "name": "L", "quantity": 14 }
-    ],
-    "imageUrl": ["https://example.com/puma-shorts.jpg"],
-    "topLevelCategory": "men",
-    "secondLevelCategory": "clothing",
-    "thirdLevelCategory": "shorts",
-    "numRatings": 110,
-    "tags": ["ON_SALE"]
-  },
-  {
-    "brand": "H&M",
-    "title": "Women's Cotton Hoodie",
-    "description": "Soft and warm cotton hoodie for everyday wear.",
-    "color": "Pink",
-    "price": 70,
-    "discountedPrice": 55,
-    "discountPercent": 21,
+    "brand": "Nike",
+    "title": "Men's Performance Shorts",
+    "description": "Lightweight and flexible sports shorts.",
+    "color": "black",
+    "price": 3500,
+    "discountedPrice": 1750,
+    "discountPercent": 50,
     "size": [
       { "name": "S", "quantity": 8 },
       { "name": "M", "quantity": 12 },
       { "name": "L", "quantity": 10 }
     ],
-    "imageUrl": ["https://example.com/hm-hoodie.jpg"],
-    "topLevelCategory": "women",
+    "imageUrl": ["https://example.com/nike-shorts-black.jpg"],
+    "topLevelCategory": "men",
     "secondLevelCategory": "clothing",
-    "thirdLevelCategory": "hoodies",
-    "numRatings": 85,
+    "thirdLevelCategory": "shorts",
+    "numRatings": 95,
     "tags": ["BEST_SELLER"]
   },
   {
-    "brand": "Levi's",
-    "title": "Men's Denim Jacket",
-    "description": "Classic denim jacket with a stylish fit.",
-    "color": "Blue",
-    "price": 100,
-    "discountedPrice": 85,
-    "discountPercent": 15,
+    "brand": "Nike",
+    "title": "Men's Winter Jacket",
+    "description": "Insulated and stylish winter jacket.",
+    "color": "red",
+    "price": 10000,
+    "discountedPrice": 5000,
+    "discountPercent": 50,
     "size": [
-      { "name": "S", "quantity": 10 },
+      { "name": "S", "quantity": 6 },
       { "name": "M", "quantity": 10 },
-      { "name": "L", "quantity": 5 }
+      { "name": "L", "quantity": 8 }
     ],
-    "imageUrl": ["https://example.com/levis-jacket.jpg"],
+    "imageUrl": ["https://example.com/nike-jacket-red.jpg"],
     "topLevelCategory": "men",
     "secondLevelCategory": "clothing",
     "thirdLevelCategory": "jackets",
-    "numRatings": 150,
-    "tags": ["NEW_ARRIVAL"]
-  },
-  {
-    "brand": "Zara",
-    "title": "Women's Summer Dress",
-    "description": "Floral print summer dress with a lightweight fabric.",
-    "color": "Yellow",
-    "price": 90,
-    "discountedPrice": 75,
-    "discountPercent": 17,
-    "size": [
-      { "name": "S", "quantity": 8 },
-      { "name": "M", "quantity": 15 },
-      { "name": "L", "quantity": 10 }
-    ],
-    "imageUrl": ["https://example.com/zara-dress.jpg"],
-    "topLevelCategory": "women",
-    "secondLevelCategory": "clothing",
-    "thirdLevelCategory": "dresses",
-    "numRatings": 95,
+    "numRatings": 120,
     "tags": ["ON_SALE"]
   },
   {
-    "brand": "Reebok",
-    "title": "Men's Compression Shirt",
-    "description": "Compression fit shirt for enhanced performance.",
-    "color": "White",
-    "price": 50,
-    "discountedPrice": 40,
-    "discountPercent": 20,
+    "brand": "Nike",
+    "title": "Men's Training Sportswear",
+    "description": "High-performance training sportswear.",
+    "color": "gray",
+    "price": 7000,
+    "discountedPrice": 3500,
+    "discountPercent": 50,
     "size": [
-      { "name": "S", "quantity": 12 },
-      { "name": "M", "quantity": 18 },
-      { "name": "L", "quantity": 8 }
+      { "name": "S", "quantity": 7 },
+      { "name": "M", "quantity": 12 },
+      { "name": "L", "quantity": 10 }
     ],
-    "imageUrl": ["https://example.com/reebok-shirt.jpg"],
+    "imageUrl": ["https://example.com/nike-sportswear-gray.jpg"],
     "topLevelCategory": "men",
     "secondLevelCategory": "clothing",
     "thirdLevelCategory": "sportswear",
     "numRatings": 130,
-    "tags": ["BEST_SELLER"]
+    "tags": ["ON_SALE"]
   },
   {
-    "brand": "Forever 21",
-    "title": "Women's Crop Top",
-    "description": "Trendy crop top with a comfortable fit.",
-    "color": "Red",
-    "price": 30,
-    "discountedPrice": 25,
-    "discountPercent": 16,
+    "brand": "Nike",
+    "title": "Men's Classic Joggers",
+    "description": "Comfortable and stylish joggers for everyday wear.",
+    "color": "navy blue",
+    "price": 5500,
+    "discountedPrice": 2750,
+    "discountPercent": 50,
     "size": [
-      { "name": "S", "quantity": 15 },
-      { "name": "M", "quantity": 12 },
-      { "name": "L", "quantity": 10 }
+      { "name": "S", "quantity": 9 },
+      { "name": "M", "quantity": 14 },
+      { "name": "L", "quantity": 11 }
     ],
-    "imageUrl": ["https://example.com/forever21-crop-top.jpg"],
-    "topLevelCategory": "women",
-    "secondLevelCategory": "clothing",
-    "thirdLevelCategory": "tops",
-    "numRatings": 70,
-    "tags": ["NEW_ARRIVAL"]
-  },
-  {
-    "brand": "Under Armour",
-    "title": "Men's Training Joggers",
-    "description": "Comfortable and stretchable joggers for daily workouts.",
-    "color": "Black",
-    "price": 65,
-    "discountedPrice": 55,
-    "discountPercent": 15,
-    "size": [
-      { "name": "S", "quantity": 14 },
-      { "name": "M", "quantity": 10 },
-      { "name": "L", "quantity": 8 }
-    ],
-    "imageUrl": ["https://example.com/ua-joggers.jpg"],
+    "imageUrl": ["https://example.com/nike-joggers-navyblue.jpg"],
     "topLevelCategory": "men",
     "secondLevelCategory": "clothing",
     "thirdLevelCategory": "joggers",
-    "numRatings": 105,
+    "numRatings": 115,
+    "tags": ["NEW_ARRIVAL"]
+  },
+  {
+    "brand": "Nike",
+    "title": "Men's Graphic T-Shirt",
+    "description": "Trendy graphic printed t-shirt for casual wear.",
+    "color": "yellow",
+    "price": 4200,
+    "discountedPrice": 2100,
+    "discountPercent": 50,
+    "size": [
+      { "name": "S", "quantity": 8 },
+      { "name": "M", "quantity": 12 },
+      { "name": "L", "quantity": 9 }
+    ],
+    "imageUrl": ["https://example.com/nike-tshirt-yellow.jpg"],
+    "topLevelCategory": "men",
+    "secondLevelCategory": "clothing",
+    "thirdLevelCategory": "t-shirts",
+    "numRatings": 100,
+    "tags": ["NEW_ARRIVAL"]
+  },
+  {
+    "brand": "Nike",
+    "title": "Men's Breathable Shorts",
+    "description": "Designed for optimal airflow and comfort.",
+    "color": "olive green",
+    "price": 3800,
+    "discountedPrice": 1900,
+    "discountPercent": 50,
+    "size": [
+      { "name": "S", "quantity": 7 },
+      { "name": "M", "quantity": 13 },
+      { "name": "L", "quantity": 11 }
+    ],
+    "imageUrl": ["https://example.com/nike-shorts-olivegreen.jpg"],
+    "topLevelCategory": "men",
+    "secondLevelCategory": "clothing",
+    "thirdLevelCategory": "shorts",
+    "numRatings": 85,
+    "tags": ["NEW_ARRIVAL"]
+  },
+  {
+    "brand": "Nike",
+    "title": "Men's Lightweight Jacket",
+    "description": "All-season lightweight and water-resistant jacket.",
+    "color": "black",
+    "price": 11000,
+    "discountedPrice": 5500,
+    "discountPercent": 50,
+    "size": [
+      { "name": "S", "quantity": 6 },
+      { "name": "M", "quantity": 9 },
+      { "name": "L", "quantity": 7 }
+    ],
+    "imageUrl": ["https://example.com/nike-jacket-black.jpg"],
+    "topLevelCategory": "men",
+    "secondLevelCategory": "clothing",
+    "thirdLevelCategory": "jackets",
+    "numRatings": 125,
+    "tags": ["ON_SALE"]
+  },
+  {
+    "brand": "Nike",
+    "title": "Men's Performance Joggers",
+    "description": "Stretchable and lightweight joggers for workouts.",
+    "color": "dark gray",
+    "price": 6000,
+    "discountedPrice": 3000,
+    "discountPercent": 50,
+    "size": [
+      { "name": "S", "quantity": 10 },
+      { "name": "M", "quantity": 14 },
+      { "name": "L", "quantity": 10 }
+    ],
+    "imageUrl": ["https://example.com/nike-joggers-darkgray.jpg"],
+    "topLevelCategory": "men",
+    "secondLevelCategory": "clothing",
+    "thirdLevelCategory": "joggers",
+    "numRatings": 140,
     "tags": ["BEST_SELLER"]
   },
   {
-    "brand": "Hollister",
-    "title": "Women's Casual Sweatshirt",
-    "description": "Soft and cozy sweatshirt for casual outings.",
-    "color": "Grey",
-    "price": 80,
-    "discountedPrice": 65,
-    "discountPercent": 18,
+    "brand": "Nike",
+    "title": "Men's Active Sportswear Set",
+    "description": "Complete sportswear set for training sessions.",
+    "color": "royal blue",
+    "price": 9000,
+    "discountedPrice": 4500,
+    "discountPercent": 50,
     "size": [
-      { "name": "S", "quantity": 10 },
+      { "name": "S", "quantity": 7 },
       { "name": "M", "quantity": 12 },
-      { "name": "L", "quantity": 15 }
+      { "name": "L", "quantity": 8 }
     ],
-    "imageUrl": ["https://example.com/hollister-sweatshirt.jpg"],
-    "topLevelCategory": "women",
+    "imageUrl": ["https://example.com/nike-sportswear-royalblue.jpg"],
+    "topLevelCategory": "men",
     "secondLevelCategory": "clothing",
-    "thirdLevelCategory": "sweatshirts",
-    "numRatings": 125,
-    "tags": ["ON_SALE"]
+    "thirdLevelCategory": "sportswear",
+    "numRatings": 135,
+    "tags": ["NEW_ARRIVAL"]
   }
 ]
+
 
 exports.createProduct = async (req, res) => {
   try {
@@ -256,12 +257,12 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const { level = "", category, color, price, size, brand, discount, search } = req.query;
+    const { level = "", category, color, price, size, brand, discount, search, sort } = req.query;
 
     const [topLevel, secondLevel, thirdLevel] = level.split(",");
 
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 100;
     const skip = (page - 1) * limit;
 
     const query = {};
@@ -321,7 +322,17 @@ exports.getProducts = async (req, res) => {
       ];
     }
 
-    const products = await Product.find(query).skip(skip).limit(limit);
+    const products = await Product.find(query)
+      .skip(skip)
+      .limit(limit)
+      .sort(
+        sort === "asc" ? { brand: 1 } :
+          sort === "desc" ? { brand: -1 } :
+            sort === "price_low" ? { discountedPrice: 1 } :
+              sort === "price_high" ? { discountedPrice: -1 } :
+                {}
+      );
+
     const totalProduct = await Product.countDocuments(query);
 
     res.status(200).json({
