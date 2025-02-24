@@ -256,7 +256,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const { level = "", category, color, price, size, brand, discount } = req.query;
+    const { level = "", category, color, price, size, brand, discount, search } = req.query;
 
     const [topLevel, secondLevel, thirdLevel] = level.split(",");
 
@@ -307,6 +307,17 @@ exports.getProducts = async (req, res) => {
       query.discountPercent = { $gte: discount };
     }
 
+    if (search) {
+      const searchTerm = new RegExp(search, "i");
+
+      query.$or = [
+        { brand: { $regex: searchTerm } },
+        { color: { $regex: searchTerm } },
+        { thirdLevelCategory: { $regex: searchTerm } },
+        { title: { $regex: searchTerm } },
+        { description: { $regex: searchTerm } }
+      ];
+    }
 
     const products = await Product.find(query).skip(skip).limit(limit);
     const totalProduct = await Product.countDocuments(query);
