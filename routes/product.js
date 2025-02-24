@@ -9,6 +9,7 @@ router.get('/', productController.getProducts);
 router.get('/tags', productController.getProductsWithTags);
 router.get('/brands', productController.getBrands);
 router.get('/colors', productController.getColors);
+router.get('/similar/:category', productController.getSimilarProduct);
 // router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductById);
 router.put('/:id', productController.updateProduct);

@@ -414,3 +414,12 @@ exports.getColors = async (req, res) => {
     res.status(500).json({ message: "Something went wrong " + error });
   }
 };
+
+exports.getSimilarProduct = async (req, res) => {
+  try {
+    const products = await Product.find({ thirdLevelCategory: req.params.category });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong " + error });
+  }
+};
