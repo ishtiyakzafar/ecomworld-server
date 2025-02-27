@@ -26,6 +26,13 @@ exports.adminMiddleware = (req, res, next) => {
   next();
 };
 
+exports.commonMiddleware = (req, res, next) => {
+  if (req.user && (req.user.role === "ADMIN" || req.user.role === "CUSTOMER")) {
+    return next();
+  }
+  return res.status(403).json({ message: "Access denied." });
+};
+
 exports.verifyAccessToken = (req, res, next) => {
   try {
     const user = jwt.verify(req.body.token, process.env.JWT_SECRET);

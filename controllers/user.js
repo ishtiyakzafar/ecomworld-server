@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 // Get all users
 exports.getAllUsers = async (req, res) => {
     try {
-        const users = await User.find({ role: "CUSTOMER" }).select("name email addresses ratings reviews createdAt");;
+        const users = await User.find({ role: "CUSTOMER" }).select("name email addresses ratings reviews createdAt").sort({ createdAt: -1 });
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: err.message });

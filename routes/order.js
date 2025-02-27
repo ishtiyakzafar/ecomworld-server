@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/order');
-const { requireLogin, userMiddleware, adminMiddleware } = require('../middleware');
+const { requireLogin, userMiddleware, adminMiddleware, commonMiddleware } = require('../middleware');
 
 // user route
 router.post('/', requireLogin, userMiddleware, orderController.createOrder);
@@ -13,7 +13,7 @@ router.post('/cancel-return', requireLogin, userMiddleware, orderController.canc
 
 // admin route
 router.get('/all', requireLogin, adminMiddleware, orderController.getAllOrder);
-router.get('/:id', requireLogin, adminMiddleware, orderController.getOrderById);
+router.get('/:id', requireLogin, commonMiddleware, orderController.getOrderById);
 router.delete('/:id', requireLogin, adminMiddleware, orderController.deleteOrder);
 router.post('/order-status', requireLogin, adminMiddleware, orderController.updateOrderStatus);
 router.post('/payment-status', requireLogin, adminMiddleware, orderController.updatePaymentStatus);

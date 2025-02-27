@@ -330,7 +330,7 @@ exports.getProducts = async (req, res) => {
           sort === "desc" ? { brand: -1 } :
             sort === "price_low" ? { discountedPrice: 1 } :
               sort === "price_high" ? { discountedPrice: -1 } :
-                {}
+                { createdAt: -1 }
       );
 
     const totalProduct = await Product.countDocuments(query);

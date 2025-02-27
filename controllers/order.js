@@ -48,7 +48,7 @@ exports.getOrderByUserId = async (req, res) => {
                 "orderItem.productId",
                 "brand color title price discountedPrice imageUrl quantity discountPercent"
             )
-            .populate("shippingAddress");
+            .populate("shippingAddress").sort({ orderDate: -1 });
 
         res.status(200).json(orders);
     } catch (error) {
@@ -69,7 +69,8 @@ exports.getAllOrder = async (req, res) => {
                     path: "userId",
                     select: "name email",
                 },
-            });
+            })
+            .sort({ orderDate: -1 });
 
         res.status(200).json(orders);
     } catch (error) {
