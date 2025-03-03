@@ -56,6 +56,59 @@ exports.getOrderByUserId = async (req, res) => {
     }
 };
 
+exports.cancelOrder = async (req, res) => {
+    const { orderId, productId } = req.body;
+
+    try {
+        const updatedOrder = await Order.findOneAndUpdate(
+            { _id: orderId, "orderItem.productId": productId },
+            { $set: { "orderItem.$.orderCancelled.date": Date.now(), "orderItem.$.orderCancelled.status": true } },
+            { new: true }
+        );
+
+        if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
+        res.status(200).json({ message: "Order cancelled successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
+exports.returnOrder = async (req, res) => {
+    const { orderId, productId } = req.body;
+
+    try {
+        const updatedOrder = await Order.findOneAndUpdate(
+            { _id: orderId, "orderItem.productId": productId },
+            { $set: { "orderItem.$.orderReturned.date": Date.now(), "orderItem.$.orderReturned.status": true } },
+            { new: true }
+        );
+
+        if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
+        res.status(200).json({ message: "Order cancelled successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
+exports.cancelReturn = async (req, res) => {
+    const { orderId, productId } = req.body;
+
+    try {
+        const updatedOrder = await Order.findOneAndUpdate(
+            { _id: orderId, "orderItem.productId": productId },
+            { $set: { "orderItem.$.orderReturned.date": null, "orderItem.$.orderReturned.status": false } },
+            { new: true }
+        );
+
+        if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
+        res.status(200).json({ message: "Order cancelled successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
+// admin
+
 exports.getAllOrder = async (req, res) => {
     try {
         const orders = await Order.find()
@@ -73,6 +126,28 @@ exports.getAllOrder = async (req, res) => {
             .sort({ orderDate: -1 });
 
         res.status(200).json(orders);
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong " + error });
+    }
+};
+
+exports.getOrderById = async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id)
+            .populate({
+                path: "orderItem.productId",
+                select: "brand color title price discountedPrice imageUrl quantity discountPercent",
+            })
+            .populate({
+                path: "shippingAddress",
+                populate: {
+                    path: "userId",
+                    select: "name email",
+                },
+            });
+
+        if (!order) return res.status(404).json({ message: "Order not found" });
+        res.status(200).json(order);
     } catch (error) {
         res.status(500).json({ message: "Something went wrong " + error });
     }
@@ -138,23 +213,6 @@ exports.updatePaymentStatus = async (req, res) => {
     }
 };
 
-exports.cancelOrder = async (req, res) => {
-    const { orderId, productId } = req.body;
-
-    try {
-        const updatedOrder = await Order.findOneAndUpdate(
-            { _id: orderId, "orderItem.productId": productId },
-            { $set: { "orderItem.$.orderCancelled.date": Date.now(), "orderItem.$.orderCancelled.status": true } },
-            { new: true }
-        );
-
-        if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
-        res.status(200).json({ message: "Order cancelled successfully" });
-    } catch (error) {
-        res.status(500).json({ message: "Something went wrong " + error });
-    }
-};
-
 exports.resetOrderStatus = async (req, res) => {
     const { orderId, productId } = req.body;
 
@@ -174,62 +232,6 @@ exports.resetOrderStatus = async (req, res) => {
 
         if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
         res.status(200).json({ message: "Orders status updated successfully" });
-    } catch (error) {
-        res.status(500).json({ message: "Something went wrong " + error });
-    }
-};
-
-exports.returnOrder = async (req, res) => {
-    const { orderId, productId } = req.body;
-
-    try {
-        const updatedOrder = await Order.findOneAndUpdate(
-            { _id: orderId, "orderItem.productId": productId },
-            { $set: { "orderItem.$.orderReturned.date": Date.now(), "orderItem.$.orderReturned.status": true } },
-            { new: true }
-        );
-
-        if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
-        res.status(200).json({ message: "Order cancelled successfully" });
-    } catch (error) {
-        res.status(500).json({ message: "Something went wrong " + error });
-    }
-};
-
-exports.cancelReturn = async (req, res) => {
-    const { orderId, productId } = req.body;
-
-    try {
-        const updatedOrder = await Order.findOneAndUpdate(
-            { _id: orderId, "orderItem.productId": productId },
-            { $set: { "orderItem.$.orderReturned.date": null, "orderItem.$.orderReturned.status": false } },
-            { new: true }
-        );
-
-        if (!updatedOrder) return res.status(404).json({ message: "Order or product not found" });
-        res.status(200).json({ message: "Order cancelled successfully" });
-    } catch (error) {
-        res.status(500).json({ message: "Something went wrong " + error });
-    }
-};
-
-exports.getOrderById = async (req, res) => {
-    try {
-        const order = await Order.findById(req.params.id)
-            .populate({
-                path: "orderItem.productId",
-                select: "brand color title price discountedPrice imageUrl quantity discountPercent",
-            })
-            .populate({
-                path: "shippingAddress",
-                populate: {
-                    path: "userId",
-                    select: "name email",
-                },
-            });
-
-        if (!order) return res.status(404).json({ message: "Order not found" });
-        res.status(200).json(order);
     } catch (error) {
         res.status(500).json({ message: "Something went wrong " + error });
     }

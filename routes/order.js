@@ -10,7 +10,6 @@ router.post('/cancel', requireLogin, userMiddleware, orderController.cancelOrder
 router.post('/return', requireLogin, userMiddleware, orderController.returnOrder);
 router.post('/cancel-return', requireLogin, userMiddleware, orderController.cancelReturn);
 
-
 // admin route
 router.get('/all', requireLogin, adminMiddleware, orderController.getAllOrder);
 router.get('/:id', requireLogin, commonMiddleware, orderController.getOrderById);
